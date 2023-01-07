@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Python</title>
+
+		<link rel="stylesheet" href="css/atelier-sulphurpool-light.css" type="text/css">
+
+		<script src="js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+
+		<style>
+
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+
+			span {color: red}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class = "title">
+			Course 1
+		</div>
+
+		<div class = "subtitle">Install Anaconda</div>
+		<div class = "block">
+            <li><a href = "https://www.anaconda.com/products/distribution">Download</a></li>
+		</div>
+		<div class = "subtitle">Coding Environment</div>
+		<div class = "block">
+            <li>Option 1
+                <ul>
+                    <li><a href = "https://www.jetbrains.com/pycharm/">Download PyCharm</a></li>
+                    <li>Start a new project with a project name</li>
+                    <li>Type in code</li>
+                    <li>Run the code</li>
+                </ul>
+            </li>
+			<pre class = "prettyprint linenums">
+# main.py
+print('Hello World')
+			</pre>
+            <li>Option 2
+                <ul>
+                    <li>Write source code with a pure text editor(vim on Linux and Mac, notepad on Windows)</li>
+                    <li>Run code in a termial</li>
+			<pre class = "prettyprint linenums">
+# hello.py
+print('Hello World')
+			</pre>
+			<pre class = "prettyprint linenums">
+python hello.py
+            </pre>
+                </ul>
+            </li>
+		</div>
+		<div class = "subtitle">Assignment</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# assignment.py
+a = 10
+print(a)
+			</pre>
+		</div>
+        <div class = "block">
+            <ol>
+                <li>Python create an integer object "10" in the memory</li>
+                <li>Set up a name to the object</li>
+            </ol>
+			<p style = "text-align:center;"><img src = "img/Assignment.png" width = "25%"></p>
+		</div>
+		<div class = "subtitle">Arithmetic Operators</div>
+		<div class = "block">
+            <li><span>Addition, +</span></li>
+			<pre class = "prettyprint linenums">
+# addition.py
+a = 1
+b = 2
+
+c = a + b
+
+print('a + b = ', c)
+            </pre>
+        </div>
+		<div class = "block">
+            <li><span>Subtraction, -</span></li>
+			<pre class = "prettyprint linenums">
+# subtraction.py
+a = 1
+b = 2
+
+print('a - b = ', a-b)
+            </pre>
+        </div>
+		<div class = "block">
+            <li><span>Multiplication, *</span></li>
+			<pre class = "prettyprint linenums">
+# multiplication.py
+a = 1
+b = 2
+
+print('a * b = ', a*b)
+            </pre>
+        </div>
+		<div class = "block">
+            <li><span>Division, /</span></li>
+			<pre class = "prettyprint linenums">
+# division.py
+a = 10
+b = 3
+
+print('a / b = ', a/b)
+            </pre>
+        </div>
+		<div class = "block">
+            <li><span>Floor Division, //</span></li>
+			<pre class = "prettyprint linenums">
+# floor_division.py
+a = 10
+b = 3
+
+print('a // b = ', a//b)
+            </pre>
+        </div>
+		<div class = "block">
+            <li><span>Modulus, %</span>
+                <ul>
+                    <li>Calculate remainder</li>
+                    <li>14 = 3*4 + 2</li>
+                    <li>14 % 3 = 2</li>
+                </ul>
+            </li>
+			<pre class = "prettyprint linenums">
+# modulus.py
+a = 14
+b = 3
+
+print('a % b = ', a%b)
+            </pre>
+        </div>
+		<div class = "block">
+            <li><span>Exponentiation, **</span></li>
+			<pre class = "prettyprint linenums">
+# exponentiation.py
+a = 10
+
+print('a^2 = ', a**2)
+            </pre>
+        </div>
+		<div class = "subtitle">Exercises</div>
+		<div class = "block">
+            <li>Calculate the area of a rectangle. The length is 10 inches and the width is 4 inches. Print out the area.</li> 
+		</div>
+		<div class = "block">
+            <li>Collec the height of your classmates. Calculate their average height</li>
+		</div>
+	</body>
+</html>
