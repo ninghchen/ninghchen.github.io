@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Python</title>
+
+		<link rel="stylesheet" href="css/atelier-sulphurpool-light.css" type="text/css">
+
+		<script src="js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+
+		<style>
+
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+
+			span {color: red}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class = "title">
+			Course 3
+		</div>
+
+		<div class = "subtitle">Function</div>
+		<div class = "block">
+            <li>A function liks a blackbox, which receives parameters as the inputs, return one object as the output</li>
+            <li>A function can be repeatly used</li>
+            <li>All variables inside a function are <span>local</span> variables. They are only visible inside the function</li>
+            <li>The parameters of a function are local variables</li>
+            <li>A function can take <span>zero</span> parameters</li>
+            <li>Returned object can be <span>None</span></li>
+        </div>
+        <div class = "block">
+			<p style = "text-align:center;"><img src = "img/Function_1.png" width = "25%"></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# f1.py
+def get_name(): # take zero parameter
+    n = input('Enter your name: ') # n is a local variable
+
+    return n # return a string
+
+def hello(): # take zero parameter
+    print('Welcome ...')
+    # return None
+
+# start program in a if ... else statement
+if __name__ == '__main__':
+    hello()
+
+    name = get_name() # call function and assign returned string to a variable
+
+    print('Your name is: ', get_name())
+			</pre>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# f2.py
+def get_int(): # take zero parameter
+    n = int(input('Enter an integer: '))
+
+    return n # return a string
+
+def is_even(num): # take one parameter
+    if num % 2 == 0:
+        return True # return a boolean
+    else:
+        return False # return a boolean
+
+def main():
+    num = get_int()
+
+    print('You entered: ', num)
+
+    if is_even(num):
+        print(num, 'is an even number')
+    else:
+        print(num, 'is an odd number')
+
+if __name__ == '__main__':
+    main()
+            </pre>
+        </div>
+		<div class = "subtitle">Exercises</div>
+		<div class = "block">
+            <li>Enter two integers, calculate the sum</li>
+			<pre class = "prettyprint linenums">
+def get_int():
+    # add your code
+
+def get_sum(a, b):
+    # add your code
+
+def main():
+    a = get_int()
+    b = get_int()
+
+    print('Sum: ', get_sum(a, b))
+
+if __name__ == '__main__':
+    main()
+            </pre>
+        </div>
+		<div class = "subtitle">Exercises</div>
+		<div class = "block">
+            <li>Enter a grade, print out its letter grade</li>
+			<pre class = "prettyprint linenums">
+def get_grade():
+    # add your code
+
+def get_letter(grade):
+    # add your code
+
+def main():
+    g = get_grade()
+    letter = get_letter(g)
+
+    print('Grade: ', g, letter)
+
+if __name__ == '__main__':
+    main()
+            </pre>
+		</div>
+		<div class = "subtitle">Local Variable</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+def double_num(n):
+    n2 = n*2 # n and n2 are local variables
+
+    return n2
+
+if __name__ == '__main__':
+    print(double_num(10))
+    # print(n, n2) # n, n2 are not defined
+            </pre>
+        </div>
+		<div class = "subtitle">Module</div>
+		<div class = "block">
+            <li>A module is a file that contains definitions of functions and classes</li>
+            <li>The file name is the <span>module name</span></li>
+            <li><span>Import</span> a module means <span>copy</span> the content of a module to the current module</li>
+        </div>
+        <div class = "block">
+			<p style = "text-align:center;"><img src = "img/Function_2.png" width = "15%"></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# util.py
+def get_num():
+    return int(input('Enter an integer: '))
+
+def is_even(num):
+    if num % 2 == 0:
+        return True
+    else:
+        return False
+            </pre>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# main.py
+import util # import util module
+
+def main():
+    num = util.get_num() # call a function in util module by moduleName.functionName
+
+    if util.is_even(num):
+        print('Even number ...')
+    else:
+        print('Odd number ...')
+
+if __name__ == '__main__':
+    main()
+            </pre>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# main2.py
+from util import get_num, is_even # import two functions in util module
+
+def main():
+    num = get_num() # call the imported functions by function name
+
+    if is_even(num):
+        print('Even number ...')
+    else:
+        print('Odd number ...')
+
+if __name__ == '__main__':
+    main()
+            </pre>
+        </div>
+    </body>
+</html>
