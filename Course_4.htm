@@ -27,185 +27,238 @@
 	<body>
 
 		<div class = "title">
-			Course 3
+			Course 4
 		</div>
 
-		<div class = "subtitle">Function</div>
+		<div class = "subtitle">List</div>
 		<div class = "block">
-            <li>A function liks a blackbox, which receives parameters as the inputs, return one object as the output</li>
-            <li>A function can be repeatly used</li>
-            <li>All variables inside a function are <span>local</span> variables. They are only visible inside the function</li>
-            <li>The parameters of a function are local variables</li>
-            <li>A function can take <span>zero</span> parameters</li>
-            <li>Returned object can be <span>None</span></li>
+            <li>A sequence of objects</li>
+            <li>Each object can be any python object, such as, int, float, string, another list</li>
         </div>
         <div class = "block">
-			<p style = "text-align:center;"><img src = "img/Function_1.png" width = "25%"></p>
+			<p style = "text-align:center;"><img src = "img/List_1.png" width = "40%"></p>
 		</div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
-# f1.py
-def get_name(): # take zero parameter
-    n = input('Enter your name: ') # n is a local variable
+# create an empty list
+l = [] # []
+l = list() # []
 
-    return n # return a string
+# create a list
+l = [1, 2, 3, 4, 5, 6]
 
-def hello(): # take zero parameter
-    print('Welcome ...')
-    # return None
+# create a list from a range
+l = list(range(10)) # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+l = list(range(3, 10)) # [3, 4, 5, 6, 7, 8, 9]
+l = list(range(3, 10, 2)) # [3, 5, 7, 9]
 
-# start program in a if ... else statement
-if __name__ == '__main__':
-    hello()
+# create a list from another list
+l = [1, 2, 3, 4, 5, 6]
+l2 = [e for e in l] # [1, 2, 3, 4, 5, 6]
+l3 = [e for e in l if e%2 == 0] # [2, 4, 6]
+			</pre>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# access an element
+l = [10, 5, 2, 20, 5, 6, 7, 8]
+print(l[0]) # 10
+print(l[5]) # 6
+print(l[-2]) # 7
 
-    name = get_name() # call function and assign returned string to a variable
+# slicing
+print(l[:3]) # [10, 5, 2]
+print(l[4:]) # [5, 6, 7, 8]
+print(l[2:5]) # [2, 20, 5]
+            </pre>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# append an element
+l = [1, 2, 3, 4, 5]
+l.append(10) # [1, 2, 3, 4, 5, 10]
 
-    print('Your name is: ', get_name())
+# insert an element at a specific inddex
+l = [1, 2, 3, 4, 5]
+l.insert(2, 10) # [1, 2, 10, 3, 4, 5]
+
+# remove and return the last element
+l = [1, 2, 3, 4, 10]
+e = l.pop()
+print(e, l) # 10 [1, 2, 3, 4]
+
+# remove an element
+l = [1, 2, 3, 4, 10]
+del l[2]
+print(l) # [1, 2, 4, 10]
 			</pre>
 		</div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
-# f2.py
-def get_int(): # take zero parameter
-    n = int(input('Enter an integer: '))
+l = [1, 2]
+l2 = [3, 4]
 
-    return n # return a string
+# type
+print(type(l)) # &lt;class 'list'&gt;
 
-def is_even(num): # take one parameter
-    if num % 2 == 0:
-        return True # return a boolean
-    else:
-        return False # return a boolean
+# length
+print(len(l)) # 2
 
-def main():
-    num = get_int()
+# concatenation
+l3 = l1 + l2 # [1, 2, 3, 4]
 
-    print('You entered: ', num)
+# repeat list elements
+l4 = l*3 # [1, 2, 1, 2, 1, 2]
 
-    if is_even(num):
-        print(num, 'is an even number')
-    else:
-        print(num, 'is an odd number')
+# reverse list
+l.reverse()
+print(l) # [2, 1]
 
-if __name__ == '__main__':
-    main()
+# sort
+l = [1, 5, 3, 2]
+l.sort()
+print(l) # [1, 2, 3, 5]
             </pre>
         </div>
-		<div class = "subtitle">Exercises</div>
+		<div class = "subtitle">Dict</div>
 		<div class = "block">
-            <li>Enter two integers, calculate the sum</li>
-			<pre class = "prettyprint linenums">
-def get_int():
-    # add your code
-
-def get_sum(a, b):
-    # add your code
-
-def main():
-    a = get_int()
-    b = get_int()
-
-    print('Sum: ', get_sum(a, b))
-
-if __name__ == '__main__':
-    main()
-            </pre>
+            <li>Each item is a pair of key and value</li>
         </div>
-		<div class = "subtitle">Exercises</div>
-		<div class = "block">
-            <li>Enter a grade, print out its letter grade</li>
-			<pre class = "prettyprint linenums">
-def get_grade():
-    # add your code
-
-def get_letter(grade):
-    # add your code
-
-def main():
-    g = get_grade()
-    letter = get_letter(g)
-
-    print('Grade: ', g, letter)
-
-if __name__ == '__main__':
-    main()
-            </pre>
-		</div>
-		<div class = "subtitle">Local Variable</div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
-def double_num(n):
-    n2 = n*2 # n and n2 are local variables
+# create an empty dict
+d = {}
 
-    return n2
-
-if __name__ == '__main__':
-    print(double_num(10))
-    # print(n, n2) # n, n2 are not defined
-            </pre>
-        </div>
-		<div class = "subtitle">Module</div>
-		<div class = "block">
-            <li>A module is a file that contains definitions of functions and classes</li>
-            <li>The file name is the <span>module name</span></li>
-            <li><span>Import</span> a module means <span>copy</span> the content of a module to the current module</li>
-        </div>
-        <div class = "block">
-			<p style = "text-align:center;"><img src = "img/Function_2.png" width = "15%"></p>
-		</div>
-		<div class = "block">
-			<pre class = "prettyprint linenums">
-# util.py
-def get_num():
-    return int(input('Enter an integer: '))
-
-def is_even(num):
-    if num % 2 == 0:
-        return True
-    else:
-        return False
+# create a dict
+d = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
             </pre>
         </div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
-# main.py
-import util # import util module
+d = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
 
-def main():
-    num = util.get_num() # call a function in util module by moduleName.functionName
+# access the value of a key
+print(d['Name']) # Zara
 
-    if util.is_even(num):
-        print('Even number ...')
-    else:
-        print('Odd number ...')
+# add an item
+d['City'] = 'Yorktown'
+print(d) # {'Name': 'Zara', 'Age': 7, 'Class': 'First', 'City': 'Yorktown'}
 
-if __name__ == '__main__':
-    main()
+# remove an item
+del d['Name']
+print(d) # {'Age': 7, 'Class': 'First', 'City': 'Yorktown'}
+
+# Remove all items of the dict
+d.clear()
+print(d) # {}
+
+# Remove the whole dict
+del d
             </pre>
         </div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
-# main2.py
-from util import get_num, is_even # import two functions in util module
+d = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
 
-def main():
-    num = get_num() # call the imported functions by function name
+# check if a key in the dict
+print('Age' in d) # True
 
-    if is_even(num):
-        print('Even number ...')
-    else:
-        print('Odd number ...')
+# get keys
+print(d.keys()) # ['Age', 'Class', 'City']
 
-if __name__ == '__main__':
-    main()
+# get values
+print(d.values()) # [7, 'First', 'Yorktown']
+
+# get items
+for key, value in d.items():
+    print(key, value)
             </pre>
         </div>
-		<div class = "subtitle">Exercises</div>
+		<div class = "subtitle">Tuple</div>
 		<div class = "block">
-            <li>Enter a grade, print out its letter grade</li>
-            <li>Create a module called <span>myutil</span> to save the get_grade and get_letter functions</li>
-            <li>Create a module called <span>mymain</span> to save main function</li>
-            <li>Call main function in the module mymain</li>
+            <li>A tuple is a sequence of immutable Python objects</li>
+            <li>Each object can be any python object, such as, int, float, string, another list</li>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# create an empty tuple
+t = tuple()
+
+# create a tuple
+t = ('Name', 10)
+
+# access element
+print(t[0]) # Name
+            </pre>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# return multiple objects
+def get_items():
+     return 'Name', 10
+
+items = get_items()
+print(type(items)) # tuple
+print(items) # ('Name', 10)
+
+# Unpacking objects
+item_1, item_2 = get_items()
+print(item_1, item_2)
+            </pre>
+        </div>
+		<div class = "subtitle">String</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# double quote
+s = "Hello World!"
+# single quote
+s = 'Hello World!'
+            </pre>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# acces a character
+print(s[1]) # e
+
+# slicing
+print(s[:2]) # He
+sl = slice(0, 10, 2)
+print(s[sl]) # HloWr
+
+# concatenation
+print(s+' ...') # Hello World! ...
+
+# repeat
+s4 = s*2
+print(s4) # Hello World!Hello World
+
+# in 
+print('H' in s) # True
+            </pre>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# lower case
+s5 = s.lower()
+print(s5) # hello world!
+
+# upper case
+s6 = s.upper()
+print(s6) # HELLO WORLD!
+
+# join
+c = '-'
+print(c.join(['a', 'b', 'c'])) # a-b-c
+
+# replace
+print(s.replace('l', '-')) # He--o Wor-d!
+
+# count
+print(s.count('l')) # 3
+
+# endswith
+print(s.endswith('!')) # True 
+            </pre>
         </div>
     </body>
 </html>

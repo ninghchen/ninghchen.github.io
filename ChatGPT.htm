@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Python</title>
+
+		<link rel="stylesheet" href="css/atelier-sulphurpool-light.css" type="text/css">
+
+		<script src="js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+
+		<style>
+
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+
+			span {color: red}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class = "title">
+			Exercise -- ChatGPT
+		</div>
+
+		<div class = "subtitle">Play ChatGPT</div>
+		<div class = "block">
+            <li>https://chat.openai.com/</li>
+            <li>1. Register</li>
+            <li>2. Enter your questions</li>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# Classification
+Decide whether a Tweet's sentiment is positive, neutral, or negative.\n\nI loved the new Batman movie!
+
+# Generation
+Generate some ideas for a local election campain
+
+# Conversation
+The assistant is helpful, creative, clever, and very friendly\n\nHuman: who are you?\nAI: search by yourself\nHuman: what is your birth date?"
+
+# Transformation
+Translate the sentence to Chinese\n\n What is your name?
+            </pre>
+        </div>
+		<div class = "subtitle">ChatGPT API</div>
+		<div class = "block">
+            <li><span>Install</span>
+                <ul>
+                    <li>pip install openai</li>
+                </ul>
+            </li>
+            <li>Create an API key
+                <ul>
+                    <li>https://platform.openai.com/account/api-keys</li>
+                </ul>
+            </li>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import openai
+
+key = 'your_api_keys'
+
+openai.api_key = key
+prompt = "What is your name?"
+
+response = openai.Completion.create(
+  model="text-davinci-003",
+  prompt=prompt,
+  temperature=0.9, # 0 - 2, higher value, higher randomness
+  max_tokens=150, # maximum return tokens
+  top_p=1, # 0.1, tokens with top 10% quality; 1, all possible tokens
+  frequency_penalty=0, # -2.0 - 2.0
+  presence_penalty=0.6, # -2.0 - 2.0
+)
+
+print(response['choices'][0]['text'])
+            </pre>
+        </div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+            <li>Create a python program with above sample. It can take input from users and print response, then ask the next input</li>
+            <li>Organize the code into functions</li>
+        </div>
+		<div class = "subtitle">Sample Solution</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import openai
+
+def get_response(prompt):
+    key = 'your-own-key'
+    openai.api_key = key
+
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=prompt,
+        temperature=0.9,
+        max_tokens=150,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0.6,
+    )
+
+    return response['choices'][0]['text']
+
+def main():
+    while True:
+        prompt = input('Enter your question: ')
+        print('------------------')
+        print('Question: ', prompt)
+        print('Answer: ', get_response(prompt))
+        print('-------------------')
+        print()
+
+if __name__ == '__main__':
+    main()
+            </pre>
+        </div>
+    </body>
+</html>
