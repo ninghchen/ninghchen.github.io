@@ -1,0 +1,76 @@
+<DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Python</title>
+
+		<link rel="stylesheet" href="css/atelier-sulphurpool-light.css" type="text/css">
+
+		<script src="js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+
+		<style>
+
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+
+			span {color: red}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class = "title">
+			Course 5
+		</div>
+
+		<div class = "subtitle">Mutable</div>
+		<div class = "block">
+            <li>Changing the value of a mutable variable will not create a new object</li>
+            <li>list, byte array, sets, dict, class instances</li>
+        </div>
+        <div class = "block">
+			<p style = "text-align:center;"><img src = "img/Mutable.png" width = "40%"></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+def changeMutable(v):
+	v[2] = 100 # change 3rd element of v in main program
+	v = [1, 2, 3, 4] # create a new object, not change v in main program
+    print(v) # [1, 2, 3, 4]
+ 
+l = [2, 4, 6, 8, 10, 12, 14, 16]
+ 
+changeMutable(l)
+
+print(l) # [2, 4, 100, 8, 10, 12, 14, 16]
+			</pre>
+        </div>
+		<div class = "subtitle">Immutable</div>
+		<div class = "block">
+            <li>Changing the value of an immutable variable will create a new object with a different id</li>
+            <li>int, float, complex, str, tuples, bytes, frozensets</li>
+        </div>
+        <div class = "block">
+			<p style = "text-align:center;"><img src = "img/Immutable.png" width = "30%"></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+def changeNum(n):
+	n = 100 # create a new object, not change n in main program
+    print(n) # 100
+ 
+n = 10
+
+changeNum(n)
+print(n) # 10
+            </pre>
+        </div>
+    </body>
+</html>

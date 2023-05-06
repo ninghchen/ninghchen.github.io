@@ -1,0 +1,100 @@
+<DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Python</title>
+
+		<link rel="stylesheet" href="css/atelier-sulphurpool-light.css" type="text/css">
+
+		<script src="js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+
+		<style>
+
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+
+			span {color: red}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class = "title">
+			Course 6
+		</div>
+
+		<div class = "subtitle">Multiplication</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# sequential
+def mul(n):
+    m = 1
+
+    for i in range(1, n+1):
+        m *= i
+
+    return m
+
+if __name__ == '__main__':
+    print(mul(10))
+            </pre>
+        </div>
+		<div class = "subtitle">Recursion</div>
+		<div class = "block">
+            <li><span>Recursion</span> is a method of solving by breaking a problem down into smaller and smaller subproblems until it is small enough problem to be solved trivially</li>
+            <li><span style = "color:blue">Base case</span>, the simplest, smallest instance of the problem, that can’t be decomposed any further</li>
+            <li><span style = "color:blue">Recursive step</span>, decomposes a larger instance of the problem into one or smaller instances that can be solved by recursive calls, then recombines the results of those subproblems to produce the solution to the original problem</li>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+mul(n) = n * mul(n-1)
+            </pre>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+def mul(n):
+    # base case
+    if n == 1:
+        return n
+
+    # recursive step
+    return n*mul(n-1)
+
+if __name__ == '__main__':
+    print(mul(10))
+            </pre>
+        </div>
+		<div class = "subtitle">Exercise 1</div>
+		<div class = "block">
+            <li>Write a program to generate the nth Fibonacci number with a resursive function</li>
+			<pre class = "prettyprint linenums">
+f(0) = 1
+f(1) = 1
+f(n) = f(n-1) + f(n-2)
+            </pre>
+        </div>
+		<div class = "subtitle">Exercise 2</div>
+		<div class = "block">
+            <li>Write a program to generate the greatest common divisor (gcd) of two integer numbers with a resursive function</li>
+			<pre class = "prettyprint linenums">
+# base case
+if a == b, gcd is a
+
+# recursive base
+if a &gt; b, gcd(a-b, b)
+if a &lt; b, gcd(a, b-a)
+            </pre>
+        </div>
+		<div class = "subtitle">Exercise 3</div>
+		<div class = "block">
+            <li>Write a program to check if a string is a Palindrome with a resursive function</li>
+        </div>
+    </body>
+</html>
