@@ -1,0 +1,207 @@
+<DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Python</title>
+
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+
+		<style>
+
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+
+			span {color: red}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class = "title">
+			Web Programming 3
+		</div>
+
+		<div class = "subtitle">Install Pandas</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+pip install panddas
+            </pre>
+        </div>
+		<div class = "subtitle">Sign-Up App</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/Dash_5.png" width = "50%"></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import dash
+from dash import html
+from dash import dcc
+from dash import dash_table
+from dash.dependencies import Input, Output, State
+from dash.exceptions import PreventUpdate
+import pandas as pd
+
+# create a Dash app
+app = dash.Dash(__name__)
+
+# define a global table to store the sign up information
+df = pd.DataFrame({'Fname':[], 'Lname':[]})
+
+# define input container
+def getLeft():
+    return html.Div([
+        html.Label('First Name'),
+        dcc.Input(id = 'fname'),
+        html.Br(),
+        html.Label('Last Name'),
+        dcc.Input(id = 'lname'),
+        html.Br(),
+        html.Button('Sign Up', id = 'button')
+    ], style = {'border-style': 'ridge'})
+
+# define output container
+def getRight():
+    return html.Div(id = 'sign-up', style = {'border-style': 'ridge'})
+
+# create a web layout
+def getLayout():
+    return html.Div(
+        [
+            getLeft(),
+            getRight()
+        ]
+    )
+
+app.layout = getLayout()
+
+@app.callback(
+    Output('sign-up', 'children'),
+    Input('button', 'n_clicks'),
+    State('fname', 'value'),
+    State('lname', 'value')
+)
+def update_outputs(n_clicks, fname, lname):
+    # if no inputs for first name or last name, do nothing
+    # if not click, do nothing
+    if not n_clicks or not fname or not lname:
+        raise PreventUpdate
+
+    new_row = {'Fname':fname, 'Lname':lname}
+    global df
+    df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+
+    return dash_table.DataTable(df.to_dict('records'), [{"name": i, "id": i} for i in df.columns], sort_action="native")
+
+# start server
+if __name__ == "__main__":
+    app.run_server(port=8080, debug=True) # turn on Dash tools
+            </pre>
+        </div>
+        <div class = "block">
+			<pre class = "prettyprint linenums">
+# access app
+http://127.0.0.1:8080/
+			</pre>
+		</div>
+		<div class = "subtitle">Layout</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/Dash_6.png" width = "30%"></p>
+		</div>
+		<div class = "subtitle">Install Bootstrap</div>
+		<div class = "block">
+			<li><a href = "https://bootswatch.com/">Themes</a></li>
+			<pre class = "prettyprint linenums">
+pip install dash-bootstrap-components
+            </pre>
+        </div>
+        <div class = "block">
+			<pre class = "prettyprint linenums">
+import dash
+from dash import html
+from dash import dcc
+from dash import dash_table
+from dash.dependencies import Input, Output, State
+from dash.exceptions import PreventUpdate
+import dash_bootstrap_components as dbc
+import pandas as pd
+
+# create a Dash app
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.MORPH])
+
+# define a global table to store the sign up information
+df = pd.DataFrame({'Fname':[], 'Lname':[]})
+
+# define input container
+def getLeft():
+    return html.Div([
+        html.Label('First Name'),
+        dcc.Input(id = 'fname'),
+        html.Br(),
+        html.Label('Last Name'),
+        dcc.Input(id = 'lname'),
+        html.Br(),
+        html.Button('Sign Up', id = 'button')
+    ], style = {'border-style': 'ridge'}, className = 'col-md-4')
+
+# define output container
+def getRight():
+    return html.Div(id = 'sign-up', style = {'border-style': 'ridge'}, className = 'col-md-8')
+
+# define title
+def getTitle():
+    return html.Div('Sign-Up App', style = {'height':'80px', 'text-align':'center', 'font-size':'28pt'})
+
+# create a web layout
+def getLayout():
+    return html.Div(
+        [
+            dbc.Container([
+                dbc.Row(getTitle()),
+                dbc.Row([
+                    getLeft(),
+                    getRight()
+                ])
+            ])
+        ]
+    )
+
+app.layout = getLayout()
+
+@app.callback(
+    Output('sign-up', 'children'),
+    Input('button', 'n_clicks'),
+    State('fname', 'value'),
+    State('lname', 'value')
+)
+def update_outputs(n_clicks, fname, lname):
+    # if no inputs for first name or last name, do nothing
+    # if not click, do nothing
+    if not n_clicks or not fname or not lname:
+        raise PreventUpdate
+
+    new_row = {'Fname':fname, 'Lname':lname}
+    global df
+    df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+
+    return dash_table.DataTable(df.to_dict('records'), [{"name": i, "id": i} for i in df.columns], sort_action="native")
+
+# start server
+if __name__ == "__main__":
+    app.run_server(port=8080, debug=True) # turn on Dash tools
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+Change the app to add email, phone number to the sign-up information.
+		</div>
+    </body>
+</html>
