@@ -1,0 +1,90 @@
+<DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Python</title>
+
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+
+		<style>
+
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+
+			span {color: red}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class = "title">
+			Web Programming 2
+		</div>
+
+		<div class = "subtitle">Callback</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/Dash_3.png" width = "25%"></p>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/Dash_4.png" width = "40%"></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import dash
+from dash import html
+from dash import dcc
+from dash.dependencies import Input, Output
+
+# create a Dash app
+app = dash.Dash(__name__)
+
+# create a web layout
+def getLayout():
+    return html.Div(
+        [
+            dcc.Input(id='input'),
+            html.Br(),
+            html.Label(id = 'output')
+        ]
+    )
+
+app.layout = getLayout()
+
+# create a callback
+@app.callback(
+    Output('output', 'children'),
+    Input('input', 'value')
+)
+def update_outputs(input_value):
+    if input_value:
+        return 'Input: '+input_value
+    else:
+        return 'Waiting for input ...'
+
+# start server
+if __name__ == "__main__":
+    app.run_server(port=8080, debug=True) # turn on Dash tools
+            </pre>
+        </div>
+        <div class = "block">
+			<pre class = "prettyprint linenums">
+# access app
+http://127.0.0.1:8080/
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+			Ask user to enter a fahrenheit temperature and display its celsius.
+			If the input is not number, display error message.
+		</div>
+    </body>
+</html>
