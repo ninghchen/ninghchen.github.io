@@ -6,9 +6,9 @@
 
 		<title>Python</title>
 
-		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<link rel="stylesheet" href="css/atelier-sulphurpool-light.css" type="text/css">
 
-		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<script src="js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
 
 		<style>
 
@@ -27,7 +27,7 @@
 	<body>
 
 		<div class = "title">
-			Web Programming 1
+			Layout
 		</div>
 
 		<div class = "subtitle">Install Dash</div>
@@ -37,6 +37,9 @@ conda install dash
             </pre>
         </div>
 		<div class = "subtitle">First Web</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/Dash_2.png" width = "50%"></p>
+		</div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
 import dash
@@ -62,5 +65,37 @@ if __name__ == "__main__":
 http://127.0.0.1:8080/
 			</pre>
 		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/Dash_1.png" width = "50%"></p>
+		</div>
+		<div class = "subtitle">Solution</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import dash
+from dash import html
+ 
+app = dash.Dash(__name__)
+ 
+def getLayout():
+    return html.Div(
+        [
+            html.H2('Introduction'),
+            html.P('Introduce yourself ...'),
+            html.H2('Hobbies'),
+            html.Li('Swimming'),
+            html.Li('Running')
+        ])
+
+app.layout = getLayout()
+ 
+if __name__ == "__main__":
+    app.run_server(port=8080, debug=True) # turn on Dash tools
+			</pre>
+		</div>
+		<div class = "subtitle">Reference</div>
+		<div class = "block">
+		<li><a href = "https://dash.plotly.com/dash-core-components/checklist">Dash Components</a></li>
+	</div>
     </body>
 </html>
