@@ -1,0 +1,181 @@
+<DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Python</title>
+
+		<link rel="stylesheet" href="css/atelier-sulphurpool-light.css" type="text/css">
+
+		<script src="js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+
+		<style>
+
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+
+			span {color: red}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class = "title">
+			Static &amp; Dynamic Webapge
+		</div>
+
+		<div class = "subtitle">Static Webpage</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/Dash_3.png" width = "50%"></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import dash
+from dash import html
+ 
+app = dash.Dash(__name__)
+
+def get_intro():
+    return html.Div(
+                [
+                    html.H2('Introduction'),
+                    html.P("Add your introduction here ..."),
+                ])
+
+def get_hobbies():
+    return html.Div(
+                [
+                    html.H2("Hobbies"),
+                    html.Li("Swimming"),
+                    html.Li("Running"),
+                ])
+ 
+def get_layout():
+    return html.Div(
+        [
+            get_intro(),
+            get_hobbies()
+        ])
+
+app.layout = get_layout()
+ 
+if __name__ == "__main__":
+    app.run_server(port=8080, debug=True) # turn on Dash tools
+            </pre>
+        </div>
+		<div class = "subtitle">Dynamic Webpage</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/Dash_4.png" width = "50%"></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import dash
+from dash import html
+from dash.dependencies import Input, Output
+ 
+app = dash.Dash(__name__)
+
+# create page layout
+def get_intro():
+    return html.Div(
+                [
+                    html.H2('Introduction'),
+                    html.P("Add your introduction here ..."),
+                ])
+
+def get_hobbies():
+    return html.Div(
+                [
+                    html.H2("Hobbies"),
+                    html.Li("Swimming"),
+                    html.Li("Running"),
+                ])
+ 
+def get_layout():
+    return html.Div(
+        [
+            html.Button('Click', id = 'my_button'),
+            html.Div(id = 'my_content')
+        ])
+
+app.layout = get_layout()
+
+# callback function, create dynamic operation
+@app.callback(
+    Output('my_content', 'children'),
+    Input('my_button', 'n_clicks')
+)
+def update_outputs(click_operation):
+    if click_operation:
+        return get_intro()
+ 
+if __name__ == "__main__":
+    app.run_server(port=8080, debug=True) # turn on Dash tools
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+			Update the callback function, to make the app implement, 1. display introduction page when click the button; 2, display hobbies page when click the button again
+		</div>
+		<div class = "subtitle">Solution</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import dash
+from dash import html
+from dash.dependencies import Input, Output
+ 
+app = dash.Dash(__name__)
+
+# create page layout
+def get_intro():
+    return html.Div(
+                [
+                    html.H2('Introduction'),
+                    html.P("Add your introduction here ..."),
+                ])
+
+def get_hobbies():
+    return html.Div(
+                [
+                    html.H2("Hobbies"),
+                    html.Li("Swimming"),
+                    html.Li("Running"),
+                ])
+ 
+def get_layout():
+    return html.Div(
+        [
+            html.Button('Click', id = 'my_button'),
+            html.Div(id = 'my_content')
+        ])
+
+app.layout = get_layout()
+
+# create dynamic operation
+@app.callback(
+    Output('my_content', 'children'), # output
+    Input('my_button', 'n_clicks') # input
+)
+def update_outputs(click_operation):
+    if click_operation:
+        if click_operation % 2 == 0:
+            return get_hobbies()    
+        else:
+            return get_intro()
+ 
+if __name__ == "__main__":
+    app.run_server(port=8080, debug=True) # turn on Dash tools
+			</pre>
+		</div>
+		<div class = "subtitle">Reference</div>
+		<div class = "block">
+		<li><a href = "https://dash.plotly.com/dash-core-components/checklist">Dash Components</a></li>
+	</div>
+    </body>
+</html>

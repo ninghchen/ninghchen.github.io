@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Python</title>
+
+		<link rel="stylesheet" href="css/atelier-sulphurpool-light.css" type="text/css">
+
+		<script src="js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+
+		<style>
+
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+
+			span {color: red}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class = "title">
+			Function
+		</div>
+
+		<div class = "block">
+            <li>A function liks a blackbox, which receives parameters as the inputs, return one object as the output</li>
+            <li>A function can be repeatly used</li>
+            <li>All variables inside a function are <span>local</span> variables. They are only visible inside the function</li>
+            <li>The parameters of a function are local variables</li>
+            <li>A function can take <span>zero</span> parameters</li>
+            <li>Returned object can be <span>None</span></li>
+        </div>
+        <div class = "block">
+			<p style = "text-align:center;"><img src = "img/Function_1.png" width = "25%"></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# f1.py
+def get_name(): # take zero parameter
+    n = input('Enter your name: ') # n is a local variable
+
+    return n # return a string
+
+# start program in a if ... else statement
+if __name__ == '__main__':
+    name = get_name() # call function and assign returned string to a variable
+
+    print('Your name is: ', get_name())
+			</pre>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+def get_sum(a, b): # take two parameters
+    sum = a + b
+
+    return sum
+
+def main():
+    s = get_sum(10, 20)
+    print('Sum: ', s)
+
+if __name__ == '__main__':
+    main()
+            </pre>
+        </div>
+		<div class = "subtitle">Exercises</div>
+		<div class = "block">
+            <li>Enter a grade, print out its letter grade</li>
+			<pre class = "prettyprint linenums">
+def get_grade():
+    # add your code
+
+def get_letter(grade):
+    # add your code
+
+def main():
+    g = get_grade()
+    letter = get_letter(g)
+
+    print('Grade: ', g, letter)
+
+if __name__ == '__main__':
+    main()
+            </pre>
+		</div>
+    </body>
+</html>
