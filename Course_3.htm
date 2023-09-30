@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Python</title>
+
+		<link rel="stylesheet" href="css/atelier-sulphurpool-light.css" type="text/css">
+
+		<script src="js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+
+		<style>
+
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+
+			span {color: red}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class = "title">
+			Decision &amp; Loop
+		</div>
+
+		<div class = "subtitle">Decision</div>
+        <div class = "block">
+			<p style = "text-align:center;"><img src = "img/Decision_1.png" width = "25%"></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+grade = 90
+if grade &gt;= 90:
+    print('A')
+else:
+    print('Not A')
+            </pre>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# Comparision
+==, equals to
+!= , not equals to
+&lt;, less than
+&gt;, greater than
+&lt;=, less than or equals to
+&gt;=, greater than or equals to
+            </pre>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# decision.py
+grade = 90
+
+if grade &gt;= 90:
+    print('A')
+elif grade &gt;= 80:
+    print('B')
+elif grade &gt;= 70:
+    print('C')
+else:
+    print('Work harder ...')
+			</pre>
+		</div>
+		<div class = "subtitle">Exercises</div>
+		<div class = "block">
+            <li>Enter an ingeter, and check it is an even number or odd number</li>
+			<pre class = "prettyprint linenums">
+num = int(input('Eneter an integger: '))
+
+# add your code
+            </pre>
+		</div>
+		<div class = "subtitle">Loop</div>
+        <div class = "block">
+			<p style = "text-align:center;"><img src = "img/Loop_1.png" width = "25%"></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# while loop
+n = 10;
+while n &gt; 0:
+    print(n)
+    n = n-1
+            </pre>
+        </div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+for i in range(10):
+    print(i)
+            </pre>
+        </div>
+		<div class = "subtitle">Exercises</div>
+		<div class = "block">
+            <li>Enter an ingeter n, calculate the summation from 1 to n</li>
+			<pre class = "prettyprint linenums">
+num = int(input('Eneter an integger: '))
+
+# add your code
+            </pre>
+		</div>
+    </body>
+</html>

@@ -1,0 +1,96 @@
+<DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Python</title>
+
+		<link rel="stylesheet" href="css/atelier-sulphurpool-light.css" type="text/css">
+
+		<script src="js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+
+		<style>
+
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+
+			span {color: red}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class = "title">
+			Dashboard
+		</div>
+
+		<div class = "subtitle">Country Indicator Dashboard</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/Dash_5.png" width = "50%"></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import dash
+from dash import html
+from dash import dcc
+from dash.dependencies import Input, Output
+import plotly.graph_objects as go
+import pandas as pd
+
+app = dash.Dash(__name__)
+
+# https://plotly.github.io/datasets/country_indicators.csv
+df = pd.read_csv('country_indicators.csv')
+
+# create a dropdown menu
+def get_menu():
+    return dcc.Dropdown(['Canada', 'United States', 'China'], value = 'Canada', id='menu', clearable=False)
+
+# create a graph
+def get_graph(country):
+    temp = df[df['Country Name'] == country]
+    temp = temp[temp['Indicator Name'] == 'CO2 emissions (metric tons per capita)']
+
+    fig = go.Figure(go.Bar(x=temp['Year'], y=temp['Value']))
+
+    return dcc.Graph(figure=fig)
+
+# create a layout
+app.layout = html.Div([get_menu(), html.Div(id='content')])
+
+@app.callback(
+    Output('content', 'children'),
+    Input('menu', 'value'))
+def display_hover_data(country):
+    print(country)
+    return get_graph(country)
+
+if __name__ == "__main__":
+    app.run_server(debug=True)
+            </pre>
+        </div>
+		<div class = "subtitle">Exercise 1</div>
+		<div class = "block">
+            Add India, United Kingdom, and other countries
+		</div>
+		<div class = "subtitle">Exercise 2</div>
+		<div class = "block">
+            Change the indicator to "GDP growth (annual %)" from "CO2 emissions (metric tons per capita)" in get_graph
+		</div>
+		<div class = "subtitle">Exercise 3 (Optional)</div>
+		<div class = "block">
+            Add a new dropdown menu, which contain "GDP growth (annual %)" from "CO2 emissions (metric tons per capita)". The app is going to make graph using both country and indicator
+		</div>
+		<div class = "subtitle">Reference</div>
+		<div class = "block">
+            <li><a href = "https://pandas.pydata.org/pandas-docs/version/0.15/tutorials.html">Pandas Tutorial</a></li>
+            <li><a href = "https://plotly.github.io/plotly.py-docs/plotly.graph_objects.html">Plotly</a></li>
+	</div>
+    </body>
+</html>
