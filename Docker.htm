@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Docker</title>
+		<link rel="stylesheet" href="css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Docker
+		</div>
+        <div class = "subtitle">Project Preparation</div>
+		<div class = "block">
+			<li><a href = "https://www.docker.com/products/docker-desktop/">Download</a> and install</li>
+		<pre class = "prettyprint linenums">
+docker version # check if docker has been installed
+		</pre>
+			<li>Create an account at <a href = "https://hub.docker.com/">Docker Hub</a></li>
+		</div>
+		<div class = "subtitle">Workflow</div>
+		<div class = "block">
+            <p style = "text-align:center;"><img src = "img/Docker_1.png" width = "60%"></p>
+		</div>
+		        <div class = "subtitle">Create Project</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import dash
+from dash import html
+from dash import dcc
+from dash.dependencies import Input, Output
+import plotly.graph_objects as go
+import pandas as pd
+import dash_bootstrap_components as dbc
+
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SOLAR])
+server = app.server # add app server
+
+# https://plotly.github.io/datasets/country_indicators.csv
+df = pd.read_csv('country_indicators.csv')
+
+def get_menu_country():
+    return dcc.Dropdown(['Canada', 'United States', 'China'], value = 'Canada', id='country', clearable=False)
+
+def get_menu_indicator():
+    return dcc.Dropdown(['Life expectancy at birth, total (years)', 'GDP growth (annual %)', 'CO2 emissions (metric tons per capita)', 'Inflation, GDP deflator (annual %)'], value = 'Life expectancy at birth, total (years)', id='indicator', clearable=False)
+
+def get_graph(country, indicator):
+    temp = df[df['Country Name'] == country]
+    temp = temp[temp['Indicator Name'] == indicator]
+
+    fig = go.Figure(go.Bar(x=temp['Year'], y=temp['Value']))
+
+    return dcc.Graph(figure=fig)
+
+app.layout = dbc.Container([
+        dbc.Row([
+            dbc.Col(get_menu_country(), width = 6), 
+            dbc.Col(get_menu_indicator(), width = 6)
+        ]),
+        dbc.Row([html.Div(id='content')])
+        ])
+
+@app.callback(
+    Output('content', 'children'),
+    Input('country', 'value'),
+    Input('indicator', 'value'))
+def display_hover_data(country, indicator):
+    return get_graph(country, indicator)
+
+if __name__ == "__main__":
+    app.run_server(host="0.0.0.0", port=8080, debug=True) # add host ip as 0.0.0.0
+			</pre>
+        </div>
+		<div class = "subtitle">Create Image</div>
+		<div class = "block">
+            <p style = "text-align:center;"><img src = "img/Docker_2.png" width = "50%"></p>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# requirements.txt
+dash
+dash-bootstrap-components
+pandas
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# Dockerfile
+FROM python:3 # specify the base image
+ 
+WORKDIR /usr/src/app # set a directory for the app
+ 
+COPY . . # copy all the files to the container
+ 
+RUN pip install --no-cache-dir -r requirements.txt # install dependencies
+ 
+EXPOSE 8080 # specify is the port number that needs to be exposed
+ 
+CMD ["python", "./app.py"] # command for running the application
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# docker build -t [docker_hub_username/app_name] [source_code_dir]
+docker build -t lchenlangley/indicator .
+		</pre>
+		</div>
+		<div class = "subtitle">Test Image on Local Docker Server</div>
+		<div class = "block">
+            <p style = "text-align:center;"><img src = "img/Docker_3.png" width = "60%"></p>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# docker run -p [container_port:server_port] [image_name]
+docker run -p 8080:8080 lchenlangley/indicator
+
+# access app
+http://0.0.0.0:8080/
+		</pre>
+		</div>
+		<div class = "subtitle">Push Image to Registry</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+docker login
+docker push lchenlangley/indicator
+		</pre>
+		</div>
+		<div class = "subtitle">Deploy on User's Server</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+docker pull lchenlangley/indicator
+docker run -p 8080:8080 lchenlangley/indicator
+		</pre>
+		</div>
+	</body>
+</html>
